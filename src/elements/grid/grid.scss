@@ -1,0 +1,46 @@
+.grid-container {
+  display:inline-block;
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  background: white url('./robot.jpg') scroll no-repeat 50% 50%;
+  background-size: cover;
+}
+
+.grid [class^='square'] {
+  height: 100px;
+  width: 100px;
+  background-color: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.5);
+  background-blend-mode: multiply;
+  line-height: 100px;
+  text-align:center;
+  display:block;
+  outline: 1px solid white;
+}
+
+.grid [class^='square']:nth-child(odd) {
+  background-color: rgba(0,0,0,0.7);
+}
+
+.robot-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}

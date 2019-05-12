@@ -1,0 +1,53 @@
+
+.robot {
+  display:block;
+  position: relative;
+  height: 99px;
+  width: 99px;
+  line-height: 100px;
+  text-align: center;
+  background-color: red;
+  border-radius: 3px;
+  overflow:visible;
+
+  @for $x from 0 to 5 {
+    @for $y from 0 to 5 {
+      &.at-#{$x}-#{$y} {
+        grid-area: unquote((6-($y+1))+'/'+($x+1)+'/'+ (6-($y+1))+'/'+($x+1));
+      }
+    }
+  }
+
+  .robot-inner {
+    transition: transform 0.3s linear;
+    transform: rotate(-90deg);
+  }
+
+  .robot-inner:before {
+    content: '➢';
+    display: block;
+    color:white;
+    font-size: 80px;
+  }
+
+  .bubble {
+    position: absolute;
+    background: white;
+    width: 320px;
+    font-weight:bold;
+    left:40px;
+    bottom:24px;
+    padding: 12px;
+    border-radius:12px;
+    border: 2px solid black;
+    &.error {
+      color:red;
+      border-color:red;
+    }
+  }
+
+  
+  &.EAST .robot-inner { transform:rotate(0); }
+  &.SOUTH .robot-inner { transform:rotate(90deg); }
+  &.WEST .robot-inner { transform:rotate(180deg); }
+}
