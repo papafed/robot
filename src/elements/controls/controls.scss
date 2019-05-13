@@ -1,7 +1,6 @@
 .controls {
   display: inline-block;
   vertical-align: top;
-  margin-left: 24px;
   padding: 24px;
   border-radius: 5px;
   border: 1px solid rgba(255,255, 255, 0.6);
@@ -10,7 +9,7 @@
   min-height: 450px;
 
   h3 {margin-top: 0;}
-  h4 { margin-top: 36px; margin-bottom:12px; }
+  h4 { margin-top: 30px; margin-bottom:8px; }
 
   label {
     margin-right:6px;
@@ -42,17 +41,23 @@
   }
 
   button {
+    font-family: 'Gugi', sans-serif;
     font-size: 14px;
     color: white;
     background-color: black;
     border-radius: 5px;
     border: 1px solid white;
     margin-right: 12px;
+    padding:6px 12px;
     &:focus {
       border-color: red;
       outline: none;
     }
-
+    &[disabled] {
+      color:grey;
+      border-color:grey;
+      opacity:0.75;
+    }
     &:active {
       background-color: darkred;
     }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {number, bool, oneOf} from 'prop-types';
+import {number, bool, oneOf, func} from 'prop-types';
 import {NORTH, EAST, SOUTH, WEST} from '../../constants';
 import Robot from '../robot/robot';
 
@@ -16,14 +16,14 @@ class Grid extends Component {
   }
 
   render() {
-    const {x, y, direction, speaking, error} = this.props;
+    const {x, y, direction, speaking, error, hide} = this.props;
     return (
       <section className="grid-container">
         <div className="grid">
           {this.drawGrid()}
         </div>
         <div className="robot-grid">
-        <Robot x={x} y={y} direction={direction} speaking={speaking} error={error}/>
+          <Robot x={x} y={y} direction={direction} speaking={speaking} error={error} hide={hide}/>
         </div>
       </section>
     )
@@ -35,7 +35,8 @@ Grid.propTypes = {
   y: number,
   direction: oneOf([NORTH, EAST, SOUTH, WEST]),
   speaking: bool,
-  error: bool
+  error: bool,
+  hide: func
 }
 
 export default Grid;

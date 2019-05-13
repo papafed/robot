@@ -155,6 +155,13 @@ class App extends Component {
     });
   }
 
+  hide = () => {
+    this.setState({
+      speaking: false,
+      error: false
+    });
+  }
+
   render() {
     const {x, y, direction, speaking, error} = this.state;
     return (
@@ -164,7 +171,7 @@ class App extends Component {
           <h2>by Niall King</h2>
         </header>
         <main className="App-main">
-          <Grid x={x} y={y} direction={direction} speaking={speaking} error={error} />
+          <Grid x={x} y={y} direction={direction} speaking={speaking} error={error} hide={this.hide} />
           <Controls onLeft={this.left} onRight={this.right} onMove={this.move} onPlace={this.place} onReport={this.report} />
         </main>
       </div>

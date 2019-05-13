@@ -17,11 +17,13 @@ class Controls extends Component {
   }
 
   changeX = (ev) => {
-    this.setState({ x: Number(ev.target.value) });
+    const val = ev.target.value
+    this.setState({ x: !!val ? parseInt(val) : null });
   }
 
   changeY = (ev) => {
-    this.setState({ y: Number(ev.target.value) });
+    const val = ev.target.value
+    this.setState({ y: !!val ? parseInt(val) : null });
   }
 
   onPlace = (ev) => {
@@ -33,6 +35,7 @@ class Controls extends Component {
 
   render() {
     const { onLeft, onRight, onMove, onReport } = this.props;
+    const { x, y } = this.state;
     return (
       <section className="controls">
         <h3>Controls</h3>
@@ -57,7 +60,7 @@ class Controls extends Component {
             <option value={SOUTH}>South</option>
             <option value={WEST}>West</option>
           </select>
-          <button type="button" onClick={ this.onPlace }>Place</button>
+        <button disabled={x === null || y === null} type="button" onClick={ this.onPlace }>Place</button>
 
           <h4>Speak to me</h4>
           <button type="button" onClick={onReport}>Report</button>
@@ -68,6 +71,7 @@ class Controls extends Component {
 }
 
 const noop = () => { };
+
 Controls.defaultProps = {
   onLeft: noop,
   onRight: noop,
