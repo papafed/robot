@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { shallow, mount, configure } from 'enzyme';
+
+import Grid from './grid';
+import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-describe('App tests', () => {
+describe('Grid tests', () => {
   it("renders correctly", () => {
-    const wrapper = shallow(<App />);
+    const wrapper = shallow(<Grid />);
     expect(wrapper.exists()).toBe(true);
   });
-
 });

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {NORTH, EAST, SOUTH, WEST} from './constants';
 import Grid from './elements/grid/grid';
 import Controls from './elements/controls/controls';
-import './App.css';
+import './App.scss';
 
 /* MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNXXXKXKKXXXXXXXXXXXXXXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXxc:cccccccccccccccclcclkNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -105,11 +105,6 @@ class App extends Component {
     }
   }
 
-  placeRobot(ev) {
-    // DO THIS NEXT
-    console.log("wha' g'wan", ev, arguments)
-  }
-
   move = () => {
     // move one step forward
     // are we dealing with x or y? depends on direction
@@ -144,9 +139,9 @@ class App extends Component {
     let dirIndex = this.directions.indexOf(this.state.direction);
     if (dirIndex === -1) {
       // this should never happen
-      this.setState({ 
+      this.setState({
         speaking:false,
-        error:true 
+        error:true
       });
     }
     dirIndex = dirIndex + dir;
@@ -165,12 +160,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Robot by Niall King.</h1>
+          <h1>Robot</h1>
           <h2>by Niall King</h2>
         </header>
         <main className="App-main">
           <Grid x={x} y={y} direction={direction} speaking={speaking} error={error} />
-          <Controls onLeft={this.left} onRight={this.right} onMove={this.move} onPlace={this.placeRobot} onReport={this.report} />
+          <Controls onLeft={this.left} onRight={this.right} onMove={this.move} onPlace={this.place} onReport={this.report} />
         </main>
       </div>
     )

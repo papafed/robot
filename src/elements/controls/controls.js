@@ -6,23 +6,38 @@ class Controls extends Component {
   constructor() {
     super();
     this.state = {
-      x: 3, 
-      y: 3,
+      x: null,
+      y: null,
       direction: NORTH,
     }
   }
 
-  selectDirection = (event) => {
-    console.log(event.target.value)
+  selectDirection = (ev) => {
+    this.setState({ direction: ev.target.value });
+  }
+
+  changeX = (ev) => {
+    this.setState({ x: Number(ev.target.value) });
+  }
+
+  changeY = (ev) => {
+    this.setState({ y: Number(ev.target.value) });
+  }
+
+  onPlace = (ev) => {
+    const { x, y, direction } = this.state;
+    if (x !== null && y !== null) {
+      this.props.onPlace(x, y, direction);
+    }
   }
 
   render() {
-    const { onLeft, onRight, onMove, onPlace, onReport } = this.props;
+    const { onLeft, onRight, onMove, onReport } = this.props;
     return (
       <section className="controls">
         <h3>Controls</h3>
         <p>Press one of the buttons to move the robot around the grid</p>
-     
+
           <h4>Rotate</h4>
           <button type="button" onClick={onLeft}>Left</button>
           <button type="button" onClick={onRight}>Right</button>
@@ -32,17 +47,17 @@ class Controls extends Component {
 
           <h4>Place on square</h4>
           <label htmlFor='x'>X:</label>
-          <input id="x" type="number" />
+          <input id="x" type="number" min='0' max='4' step='1' onChange={ this.changeX } />
           <label htmlFor='y'>Y:</label>
-          <input id="y" type="number" />
+          <input id="y" type="number" min='0' max='4' step='1' onChange={ this.changeY } />
           <label htmlFor='facing'>Facing:</label>
-          <select id="facing" type="number" onChange={this.selectDirection}>
+          <select id="facing" type="number" onChange={ this.selectDirection }>
             <option value={NORTH}>North</option>
             <option value={EAST}>East</option>
             <option value={SOUTH}>South</option>
             <option value={WEST}>West</option>
           </select>
-          <button type="button" onClick={onPlace}>Place</button>
+          <button type="button" onClick={ this.onPlace }>Place</button>
 
           <h4>Speak to me</h4>
           <button type="button" onClick={onReport}>Report</button>
@@ -50,6 +65,15 @@ class Controls extends Component {
       </section>
     );
   }
+}
+
+const noop = () => { };
+Controls.defaultProps = {
+  onLeft: noop,
+  onRight: noop,
+  onMove: noop,
+  onPlace: noop,
+  onReport: noop
 }
 
 Controls.propTypes = {
